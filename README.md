@@ -1,14 +1,14 @@
 # Ray tracer program implementation with minimal libraries; Written in pure C and SDL2.
 
-To build from source, you need the following dependencies: 
+##To build from source, you need the following dependencies: 
 
-sdl2
-gcc
-make
+-sdl2
+-gcc
+-make
 
 To run the program, execute the ./ray_tracer binary.
 
-If you are on macOS, you may run:
+If you are on macOS, you may install sdl2 via homebrew:
 ```
 brew install sdl2
 ```
