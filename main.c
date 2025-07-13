@@ -2,9 +2,11 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "SDL.h"
+#include "vec3.h"
+#include "color.h"
 
-#define IMAGE_WIDTH 512
-#define IMAGE_HEIGHT 512
+#define IMAGE_WIDTH 256
+#define IMAGE_HEIGHT 256
 
 int main(void)
 {
@@ -36,18 +38,25 @@ int main(void)
         perror("Error opening file");
         return 1;
     }
+    /*Rendering
     
-    //Rendering
-    //
-    //The header for a ppm file is as follows: 
-    //P3 #means colors are in ASCII
-    //256 256 #height and width of the file
-    //255 #max color
+    The header for a ppm file is as follows: 
+    P3 
+    IMAGE_WIDTH IMAGE_HEIGHT 
+    255 #max color
+    */
+
     fprintf(fptr, "P3\n%d %d\n255\n", IMAGE_WIDTH, IMAGE_HEIGHT);
 
     for (int j = 0; j < IMAGE_HEIGHT; ++j){
         for (int i = 0; i < IMAGE_WIDTH; i++){
-            double r = (double)i / (IMAGE_WIDTH - 1);
+            color pixel_color = vec3_make(
+                ((double)(i)) / (IMAGE_WIDTH - 1),
+                ((double)(j)) / (IMAGE_HEIGHT - 1),
+                0.0
+            );
+            write_color(fptr, &pixel_color);
+            /*double r = (double)i / (IMAGE_WIDTH - 1);
             double g = (double)j / (IMAGE_HEIGHT - 1);
             double b = 0.0;
 
@@ -55,10 +64,10 @@ int main(void)
             int ig = (int)(255.999 * g);
             int ib = (int)(255.999 * b);
 
-            fprintf(fptr, "%d %d %d\n", ir, ig, ib);
+            fprintf(fptr, "%d %d %d\n", ir, ig, ib);*/
 
             printf("\rScanlines remaining: %d / %d", j+1, IMAGE_HEIGHT);
-            fflush(stdout);
+            //fflush(stdout);
         }
     }
     printf("\nRendering done!\n");
@@ -91,7 +100,5 @@ int main(void)
 
     SDL_DestroyWindow(win);
     SDL_Quit();
-    return 0;
-    
     return 0;
 }
