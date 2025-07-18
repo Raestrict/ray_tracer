@@ -12,4 +12,10 @@ If you are on macOS, you may install sdl2 via homebrew:
 ```
 brew install sdl2
 ```
+
+Afterwards, just build from source using make:
+```
+make -B
+```
+
 The reference: https://raytracing.github.io/books/RayTracingInOneWeekend.html
