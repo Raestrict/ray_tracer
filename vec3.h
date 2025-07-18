@@ -35,6 +35,10 @@ static inline double vec3_x(const vec3 *v) {return v->e[0]; }
 static inline double vec3_y(const vec3 *v) {return v->e[1]; }
 static inline double vec3_z(const vec3 *v) {return v->e[2]; }
 
+static inline vec3 vec3_sub(vec3 a, vec3 b) {
+    return (vec3){a.e[0] - b.e[0], a.e[1] - b.e[1], a.e[2] - b.e[2]};
+}
+
 //Negation: return -v
 static inline vec3 vec3_neg(const vec3 *v) {return vec3_make(-v->e[0], -v->e[1], -v->e[2]); }
 
