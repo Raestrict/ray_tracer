@@ -5,9 +5,6 @@
 
 #include <stdio.h>
 
-//#define vec3 = color;
-//typedef vec3 = color;
-//
 //for clarity within a color context
 typedef vec3 color;
 
