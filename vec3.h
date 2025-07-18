@@ -47,23 +47,24 @@ static inline void vec3_set(vec3 *v, int i, double value) {
 }
 
 // v += u
-static inline void vec3_add_assign(vec3 *v, const vec3 *u){
-   v->e[0] += u->e[0];
-   v->e[1] += u->e[1];
-   v->e[2] += u->e[2];
+static inline vec3 vec3_add_assign(vec3 v, vec3 u){
+   v.e[0] += u.e[0];
+   v.e[1] += u.e[1];
+   v.e[2] += u.e[2];
+   return v;
 }
 
 // v *= u
-static inline vec3 vec3_mul_assign(vec3 *v, double t){
-   return vec3_make(v->e[0] *= t,
-   v->e[1] *= t,
-   v->e[2] *= t);
+static inline vec3 vec3_mul_assign(vec3 v, double t){
+   return vec3_make(v.e[0] *= t,
+   v.e[1] *= t,
+   v.e[2] *= t);
 }
 
 // v /= t
 static inline vec3 vec3_div_assign(vec3 *v, double t){
     //Multiply by reciprocal is often faster than dividing repeatedly.
-    return vec3_mul_assign(v, 1.0 / t);
+    return vec3_mul_assign(*v, 1.0 / t);
 } 
 
 // |v|^2 = e[0]^2 + e[1]^2 + e[2]^2
