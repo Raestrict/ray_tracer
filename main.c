@@ -65,8 +65,17 @@ int main(void) {
   vec3 pixel_delta_u = vec3_div_assign(&viewport_u, IMAGE_WIDTH);
   vec3 pixel_delta_v = vec3_div_assign(&viewport_v, IMAGE_HEIGHT);
 
+  vec3_div_assign(&viewport_u, 2);
+  vec3_div_assign(&viewport_v, 2);
+
+  vec3 temp = vec3_sub(camera_center, vec3_make(0, 0, focal_length));
+  temp = vec3_sub(temp, viewport_u);
+  temp = vec3_sub(temp, viewport_v);
+
+  point viewport_upper_left = temp;
+
   // Calculate the location of the upper left pixel.
-  point viewport_upper_left = camera_center - vec3_make(0, 0, focal_length) - viewport_u / 2 - viewport_v / 2;
+  //point viewport_upper_left = camera_center - vec3_make(0, 0, focal_length) - vec3_div_assign(&viewport_u, 2) - vec3_div_assign(&viewport_v, 2);
 
   fprintf(fptr, "P3\n%d %d\n255\n", IMAGE_WIDTH, IMAGE_HEIGHT);
 
